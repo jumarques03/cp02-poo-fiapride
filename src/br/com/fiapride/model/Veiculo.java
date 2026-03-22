@@ -2,18 +2,18 @@ package br.com.fiapride.model;
 
 public class Veiculo {
 
-    private String nomeDono;    // mudança: individuo para nomeDono
-    private String placa;   // mudança: pl para placa
-    private double quantidadeGasolinaLitros; // mudança: gas para quantidadeGasolinaLitros, mudança: int para double --> qtd gasolina pode ser quebrada
+    // Atributos privados para garantir a segurança dos dados
+    private String nomeDono;   
+    private String placa;   
+    private double quantidadeGasolinaLitros;
 
-    // adiciona construtor da classe
     public Veiculo(String nomeDono, String placa, double quantidadeGasolinaLitros) {
         this.setNomeDono(nomeDono);
         this.setPlaca(placa);
-        this.setquantidadeGasolinaLitros(quantidadeGasolinaLitros);
+        this.setQuantidadeGasolinaLitros(quantidadeGasolinaLitros);
     }
     
-    // getters para permitir leitura dos valores dos atributos de forma segura
+    // Getters públicos para leitura controlada
     public String getNomeDono() {
         return this.nomeDono;
     } 
@@ -22,13 +22,13 @@ public class Veiculo {
         return this.placa;
     } 
     
-    public double getquantidadeGasolinaLitros() {
+    public double getQuantidadeGasolinaLitros() {
         return this.quantidadeGasolinaLitros;
     } 
 
-    // setters para permitir mudança dos valores dos atributos de forma segura
+    // Setters privados para garantir o encapsulamento e a validação dos dados
     private void setNomeDono(String nome) {
-        if (nome == null || nome.trim().isEmpty()) {    // .trim() remove espaços | .isEmpty() verifica se a string é vazia
+        if (nome == null || nome.trim().isEmpty()) { 
             System.out.println("ERRO: Tentativa de definir o nome do dono do veículo bloqueada!");
             return;
         }
@@ -45,7 +45,7 @@ public class Veiculo {
         this.placa = placa;
     }
     
-    private void setquantidadeGasolinaLitros(double quantidadeGasolinaLitros) {
+    private void setQuantidadeGasolinaLitros(double quantidadeGasolinaLitros) {
         if (quantidadeGasolinaLitros <= 0){
             System.out.println("ERRO: Tentativa de definir quantidade de gasolina negativa bloqueada!");
             return; 
@@ -54,6 +54,7 @@ public class Veiculo {
         this.quantidadeGasolinaLitros = quantidadeGasolinaLitros;
     }  
 
+    // Métodos de Negócio: substituem a alteração direta de atributos
     public void abastecer(double litrosGasolina) {
         if (quantidadeGasolinaLitros <= 0){
             System.out.println("ERRO: Quantidade de gasolina inválida. O valor a abastecer tem que ser maior que zero.");
